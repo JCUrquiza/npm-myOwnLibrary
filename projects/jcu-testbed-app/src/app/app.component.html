@@ -1,0 +1,9 @@
+<h1 class="text-3xl font-bold underline">Hola mundo</h1>
+
+<lib-jcu-side-menu
+  [isAuthenticated]="isAuthenticated()"
+  [titleColor]="TitleColor.green"
+  (onSignIn)="isAuthenticated.set(true)"
+  (onSignOut)="isAuthenticated.set(false)"
+/>
+

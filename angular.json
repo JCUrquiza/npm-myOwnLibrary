@@ -3,5 +3,153 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "jcu-side-menu": {
+      "projectType": "library",
+      "root": "projects/jcu-side-menu",
+      "sourceRoot": "projects/jcu-side-menu/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/jcu-side-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/jcu-side-menu/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/jcu-side-menu/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/jcu-side-menu/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/jcu-side-menu/**/*.ts",
+              "projects/jcu-side-menu/**/*.html"
+            ],
+            "eslintConfig": "projects/jcu-side-menu/eslint.config.js"
+          }
+        }
+      }
+    },
+    "jcu-testbed-app": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/jcu-testbed-app",
+      "sourceRoot": "projects/jcu-testbed-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/jcu-testbed-app",
+            "index": "projects/jcu-testbed-app/src/index.html",
+            "browser": "projects/jcu-testbed-app/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/jcu-testbed-app/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/jcu-testbed-app/public"
+              }
+            ],
+            "styles": [
+              "projects/jcu-testbed-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kB",
+                  "maximumError": "4kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "jcu-testbed-app:build:production"
+            },
+            "development": {
+              "buildTarget": "jcu-testbed-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/jcu-testbed-app/tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/jcu-testbed-app/public"
+              }
+            ],
+            "styles": [
+              "projects/jcu-testbed-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/jcu-testbed-app/**/*.ts",
+              "projects/jcu-testbed-app/**/*.html"
+            ],
+            "eslintConfig": "projects/jcu-testbed-app/eslint.config.js"
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": "70e3b6a4-e1f2-427b-847c-20f40d32615d",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
