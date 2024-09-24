@@ -18,6 +18,8 @@ export enum TitleColor {
 export class JcuSideMenuComponent {
 
   isAuthenticated = input(false);
+  title = input('JCU');
+  subTitle = input('Library');
 
   titleColor = input<TitleColor>(TitleColor.purple);
 
